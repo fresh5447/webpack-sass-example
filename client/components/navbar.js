@@ -1,3 +1,18 @@
+var React = require('react');
+
+var links = ['home', 'cart', 'shop'];
+
+var Navbar = React.createClass({
+
+  handleClick: function(i) {
+    this.props.toggleApp(i)
+  },
+  render: function() {
+    var self = this;
+    var tabs = links.map(function(i){
+      return <li><a onClick={self.handleClick.bind(this, i)} >{ i }</a></li>
+    });
+    return (
       <nav className="navbar navbar-default" role="navigation">
         <div className="container-fluid">
           <div className="navbar-header">
@@ -9,24 +24,21 @@
             </button>
             <a className="navbar-brand" href="#">Title</a>
           </div>
-
           <div className="collapse navbar-collapse navbar-ex1-collapse">
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-            <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Link</a></li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown <b className="caret"></b></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
+              { tabs }
             </ul>
           </div>
         </div>
       </nav>
+      )
+  }
+});
+
+module.exports = Navbar;
+
+
+
+
+
+
