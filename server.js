@@ -4,6 +4,10 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/wanets');
 var productRoutes = require('./routes/products');
+var User = require('./models/user');
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Running in production mode');
@@ -49,11 +53,41 @@ app.use(function(req, res, next){
 app.use(express.static('public'));
 app.use('/static', express.static('static'));
 
+app.use(session({
+  secret: 'ilovescotchscotchyscotchscotch'
+})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(session({
+  cookie: {
+    maxAge: 60000
+  }
+}));
+app.use(flash());
+
+require('./config/passport')(passport);
+// routes ======================================================================
+require('./routes/user.js')(app, passport);
+
 var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
   res.send('index')
 });
+
+app.get('/api/user', function(req, res){
+  if(req.user){
+    User.findById(req.user._id, function(err, user){
+      if(err){
+        console.log(err)
+      } else {
+        res.json(user)
+      }
+    })
+  } else {
+  res.json({message: "no user"});    
+  }
+})
 
 app.use('/api/products', productRoutes);
 

@@ -1,6 +1,6 @@
 var React = require('react');
 
-var links = ['home', 'cart', 'shop', 'admin'];
+var links = ['home', 'cart', 'shop', 'admin', 'signup', 'signin'];
 
 var Navbar = React.createClass({
 

@@ -6,6 +6,8 @@ var Shop = require('./components/ShoppingCart/Shop');
 var Cart = require('./components/ShoppingCart/Cart');
 var AdminPage = require('./components/AdminPage/AdminPage');
 var Footer = require('./components/Modules/Footer');
+var Signup = require('./components/UserStuff/Signup');
+var Signin = require('./components/UserStuff/Signin');
 require('./stylesheets/base.sass');
 
 var App = React.createClass({
@@ -43,6 +45,12 @@ var App = React.createClass({
           break;
       case 'cart':
           return <Cart/>
+          break;
+      case 'signup':
+          return <Signup/>
+          break;
+      case 'signin':
+          return <Signin/>
           break;
     }
   },
