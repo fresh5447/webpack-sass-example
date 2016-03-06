@@ -23,7 +23,7 @@ router.route('/')
 
     var order = new Order();
     order.customer = "56d5d2f51c0375472946539f";
-    order.items = ["56dba3d56bb89af736cfff42", "56dba3e16bb89af736cfff43", "56dba3ec6bb89af736cfff44", "56dba3f36bb89af736cfff45"];
+    order.items = req.body.items;
     order.total = 100;
 
     order.save(function(err, order){

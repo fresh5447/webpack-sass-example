@@ -72,7 +72,7 @@ var App = React.createClass({
           return <AdminPage/>
           break;
       case 'cart':
-          return <Cart user={ this.state.user } />
+          return <Cart user={ this.state.user } items={this.state.basket} />
           break;
       case 'signup':
           return <Signup/>
@@ -92,7 +92,6 @@ var App = React.createClass({
       <div>
         <Navbar toggleComponents={this.toggleComponents} basNum={counter}/>
           {this.showComponent()}
-          <button onClick={this.finalizeBasket}> Finalize State </button>
         <Footer/>
       </div>
       )
