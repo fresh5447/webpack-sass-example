@@ -1,32 +1,88 @@
-      <nav className="navbar navbar-default" role="navigation">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="#">Title</a>
-          </div>
+var React = require('react');
 
-          <div className="collapse navbar-collapse navbar-ex1-collapse">
-            <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-            <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Link</a></li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown <b className="caret"></b></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
+var tabsArray = ['orders', 'customers', 'products'];
+
+var ManageOrders = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <h3> hello from orders </h3>
+      </div>
+      )
+  }
+});
+
+var ManageCustomers = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <h3> hello from customers </h3>
+      </div>
+      )
+  }
+});
+
+var ManageProducts = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <h3> hello from products </h3>
+      </div>
+      )
+  }
+});
+
+
+var AdminNav = React.createClass({
+  render: function() {
+    var self = this;
+    var links = tabsArray.map(function(i){
+      return <li className="">{ i }</li>
+    });
+    return (
+        <div className="container">
+          <div className="row">
+          <ol className="breadcrumb">
+            { links }
+          </ol>
           </div>
         </div>
-      </nav>
+      )
+  }
+});
+
+var AdminPage = React.createClass({
+  getInitialState: function() {
+    showing: 'orders'
+  },
+  showComponent: function() {
+    switch(this.state.showing) {
+      case 'orders':
+          return <Orders/>
+          break;
+      case 'customers':
+          return <Customers/>
+          break;
+      case 'products':
+          return <Products/>
+          break;
+    }
+  },
+  toggleComponents: function(toShow) {
+    this.setState({
+      showing: toShow
+    });
+  },
+  render: function() {
+    return (
+      <div>
+        <AdminNav toggleComponents={this.toggleComponents}/>
+        <ManageOrders/>
+        <ManageCustomers/>
+        <ManageProducts/>
+      </div>
+      )
+  }
+})
+
+module.exports = AdminPage;

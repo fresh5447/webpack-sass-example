@@ -1,11 +1,11 @@
 var React = require('react');
 
-var links = ['home', 'cart', 'shop'];
+var links = ['home', 'cart', 'shop', 'admin'];
 
 var Navbar = React.createClass({
 
   handleClick: function(i) {
-    this.props.toggleApp(i)
+    this.props.toggleComponents(i)
   },
   render: function() {
     var self = this;

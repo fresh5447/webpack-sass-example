@@ -1,3 +1,47 @@
-body {
-  background: gray;
+.my-footer {
+  background: black;
+}
+
+.center-it {
+  text-align: center
+}
+
+.polaroid {
+    width: 80%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.outside {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.inside {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.dressing-img {
+    position: relative;
+    float: left;
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.dressing {
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.dressing-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    max-width: 50%;
+    height: auto;
 }

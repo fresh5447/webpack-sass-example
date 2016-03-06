@@ -1,25 +1,45 @@
 var React = require('react');
 var RD = require('react-dom');
-var Navbar = require('./components/navbar');
-var Home = require('./components/home');
-var Shop = require('./components/shop');
-var Cart = require('./components/cart');
-var Footer = require('./components/footer');
+var Navbar = require('./components/Modules/Navbar');
+var Home = require('./components/HomePage/Home');
+var Shop = require('./components/ShoppingCart/Shop');
+var Cart = require('./components/ShoppingCart/Cart');
+var AdminPage = require('./components/AdminPage/AdminPage');
+var Footer = require('./components/Modules/Footer');
 require('./stylesheets/base.sass');
 
 var App = React.createClass({
   getInitialState: function() {
     return {
-      showing: 'home'
+      showing: 'home',
+      products: []
     }
+  },
+  loadProductsFromServer: function() {
+    console.log("trying to load products from server");
+    var self = this;
+    $.ajax({
+      url: this.props.url,
+      method: 'GET'
+    }).done(function(d){
+      console.log("got products - about to update state");
+      self.setState({products: d})
+    })
+  },
+  componentDidMount: function() {
+    console.log("component did mount executed");
+    this.loadProductsFromServer()
   },
   showComponent: function() {
     switch(this.state.showing) {
       case 'home':
-          return <Home/>
+          return <Home products={this.state.products}/>
           break;
       case 'shop':
           return <Shop/>
+          break;
+      case 'admin':
+          return <AdminPage/>
           break;
       case 'cart':
           return <Cart/>
@@ -34,7 +54,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Navbar toggleApp={this.toggleApps}/>
+        <Navbar toggleComponents={this.toggleComponents}/>
           {this.showComponent()}
         <Footer/>
       </div>
@@ -42,4 +62,4 @@ var App = React.createClass({
   }
 });
 
-RD.render(<App/>, document.getElementById('app'));
+RD.render(<App url="/api/products"/>, document.getElementById('app'));

@@ -1,7 +1,7 @@
 var React = require('react');
-var Jumbotron = require('./jumbotron');
-var About = require('./about');
-var Products = require('./products');
+var Jumbotron = require('../Modules/Jumbotron');
+var About = require('./About');
+var Products = require('./Products');
 
 var Home = React.createClass({
   render: function() {
@@ -9,7 +9,7 @@ var Home = React.createClass({
       <div>
         <Jumbotron/>
         <About/>
-        <Products/>
+        <Products products={ this.props.products }/>
       </div>
       )
   }

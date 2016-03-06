@@ -3,8 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/wanets');
-
-
+var productRoutes = require('./routes/products');
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Running in production mode');
@@ -54,7 +53,9 @@ var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
   res.send('index')
-})
+});
+
+app.use('/api/products', productRoutes);
 
 app.listen(port, function(req, res){
   console.log("server running on port: " + port)
