@@ -17,6 +17,8 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       showing: 'home',
+      customers: [],
+      orders: [],
       products: [],
       basket: [],
       user: {_id: "56db8b20dbf0214e27499185", __v: 0, local: Object}
@@ -28,8 +30,26 @@ var App = React.createClass({
       url: '/api/user',
       method: 'GET'
     }).done(function(data){
-      console.log(data)
       self.setState({user: data})
+    })
+  },
+  getOrders: function() {
+    var self = this;
+    $.ajax({
+      url: '/api/orders',
+      method: 'GET'
+    }).done(function(data){
+      console.log('got orders', data)
+      self.setState({orders: data})
+    })
+  },
+  getCustomers: function() {
+    var self = this;
+    $.ajax({
+      url: '/api/customers',
+      method: 'GET'
+    }).done(function(data){
+      self.setState({customers: data});
     })
   },
   loadProductsFromServer: function() {
@@ -39,13 +59,13 @@ var App = React.createClass({
       url: this.props.url,
       method: 'GET'
     }).done(function(d){
-      console.log("got products - about to update state");
       self.setState({products: d})
     })
   },
   componentDidMount: function() {
-    console.log("component did mount executed");
     this.loadProductsFromServer();
+    this.getCustomers();
+    this.getOrders();
   },
   addProduct: function(b) {
     myArrOfState.push(b);
@@ -69,7 +89,7 @@ var App = React.createClass({
           return <Shop/>
           break;
       case 'admin':
-          return <AdminPage/>
+          return <AdminPage orders={ this.state.orders } products={this.state.products} customers={this.state.customers}/>
           break;
       case 'cart':
           return <Cart user={ this.state.user } items={this.state.basket} />

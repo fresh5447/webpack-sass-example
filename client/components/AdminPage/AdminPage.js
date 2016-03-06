@@ -16,13 +16,13 @@ var AdminPage = React.createClass({
   toggleAdminComponents: function() {
     switch(this.state.adminShowing) {
       case 'orders':
-          return <ManageOrders />
+          return <ManageOrders orders={ this.props.orders } />
           break;
       case 'products':
-          return <ManageProducts/>
+          return <ManageProducts products={ this.props.products }/>
           break;
       case 'customers':
-          return <ManageCustomers/>
+          return <ManageCustomers customers={ this.props.customers }/>
           break;
     }
   },

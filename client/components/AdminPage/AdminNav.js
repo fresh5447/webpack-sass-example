@@ -14,7 +14,7 @@ var AdminNav = React.createClass({
     return (
         <div className="container">
           <div className="row">
-          <ol className="breadcrumb">
+          <ol className="breadcrumb my-crumb">
             { links }
           </ol>
           </div>

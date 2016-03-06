@@ -22,7 +22,7 @@ router.route('/')
   .post(function(req, res){
 
     var order = new Order();
-    order.customer = "56d5d2f51c0375472946539f";
+    order.customer = "56dcaf51b55ee06789310385";
     order.items = req.body.items;
     order.total = 100;
 
