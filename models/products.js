@@ -7,4 +7,4 @@ var ProductSchema = new Schema({
   img: String,
 });
 
-module.exports = mongoose.model('Post', ProductSchema);
+module.exports = mongoose.model('Product', ProductSchema);

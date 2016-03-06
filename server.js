@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/wanets');
 var productRoutes = require('./routes/products');
+var orderRoutes = require('./routes/orders');
 var User = require('./models/user');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -90,6 +91,7 @@ app.get('/api/user', function(req, res){
 })
 
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.listen(port, function(req, res){
   console.log("server running on port: " + port)

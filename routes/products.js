@@ -41,7 +41,7 @@ router.route('/:product_id')
     })
   })
   .delete(function(req, res){
-    Product.remove({_id: req.params.post_id}, function(err){
+    Product.remove({_id: req.params.product_id}, function(err){
       if(err){
         console.log(err)
       } else {
