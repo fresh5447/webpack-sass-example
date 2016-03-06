@@ -1,7 +1,11 @@
 var React = require('react');
 
 var Products = React.createClass({
+  handleProduct: function(id) {
+    this.props.addProduct(id)
+  },
   render: function() {
+    var self = this;
     var product = this.props.products.map(function(p){
       return (
         <div className="panel panel-default col-xs-4">
@@ -13,6 +17,7 @@ var Products = React.createClass({
           </div>
           <div className="panel-footer">
             ${p.price} {' '}
+            <button onClick={self.handleProduct.bind(this, p._id)}>Add To Cart</button>
           </div>
         </div>
         )

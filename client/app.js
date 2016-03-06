@@ -10,12 +10,27 @@ var Signup = require('./components/UserStuff/Signup');
 var Signin = require('./components/UserStuff/Signin');
 require('./stylesheets/base.sass');
 
+var myArrOfState = [];
+var counter = 0;
+
 var App = React.createClass({
   getInitialState: function() {
     return {
       showing: 'home',
-      products: []
+      products: [],
+      basket: [],
+      user: {_id: "56db8b20dbf0214e27499185", __v: 0, local: Object}
     }
+  },
+  getUser: function() {
+    var self = this;
+    $.ajax({
+      url: '/api/user',
+      method: 'GET'
+    }).done(function(data){
+      console.log(data)
+      self.setState({user: data})
+    })
   },
   loadProductsFromServer: function() {
     console.log("trying to load products from server");
@@ -30,12 +45,25 @@ var App = React.createClass({
   },
   componentDidMount: function() {
     console.log("component did mount executed");
-    this.loadProductsFromServer()
+    this.loadProductsFromServer();
+  },
+  addProduct: function(b) {
+    myArrOfState.push(b);
+    this.finalizeBasket();
+    this.incrementCounter();
+  },
+  incrementCounter: function() {
+    counter++
+  },
+  finalizeBasket: function(){
+    this.setState({
+      basket: myArrOfState
+    })
   },
   showComponent: function() {
     switch(this.state.showing) {
       case 'home':
-          return <Home products={this.state.products}/>
+          return <Home products={this.state.products} addProduct={this.addProduct}/>
           break;
       case 'shop':
           return <Shop/>
@@ -44,7 +72,7 @@ var App = React.createClass({
           return <AdminPage/>
           break;
       case 'cart':
-          return <Cart/>
+          return <Cart user={ this.state.user } />
           break;
       case 'signup':
           return <Signup/>
@@ -62,8 +90,9 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Navbar toggleComponents={this.toggleComponents}/>
+        <Navbar toggleComponents={this.toggleComponents} basNum={counter}/>
           {this.showComponent()}
+          <button onClick={this.finalizeBasket}> Finalize State </button>
         <Footer/>
       </div>
       )
