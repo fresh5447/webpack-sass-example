@@ -8,30 +8,35 @@ var Products = React.createClass({
     var self = this;
     var product = this.props.products.map(function(p){
       return (
-        <div className="panel panel-default col-xs-4">
-          <div className= "panel-header">
-            {p.name}
-          </div>
-          <div className="panel-body">
-            <img src={p.img} className="dressing-img" />
-          </div>
-          <div className="panel-footer">
-            ${p.price} {' '}
-            <button onClick={self.handleProduct.bind(this, p._id)}>Add To Cart</button>
+        <div className="col s12 m7">
+          <div className="card">
+            <div className="card-image">
+              <img src={p.img}/>
+              <span className="card-title">{p.name}</span>
+            </div>
+            <div className="card-content">
+              <p>This is a description of the card that heas yet to be created</p>
+            </div>
+            <div className="card-action">
+              <button onClick={self.handleProduct.bind(this, p._id)}>Add To Cart</button>
+            </div>
           </div>
         </div>
         )
     });
     return (
-      <section>
-        <div className="container">
           <div className="row">
             { product }
           </div>
-        </div>
-      </section>
       )
   }
 });
 
 module.exports = Products;
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 var React = require('react');
 
-var links = ['home', 'cart', 'shop', 'admin', 'signup', 'signin'];
+var links = ['home', 'shop', 'admin', 'signup', 'signin'];
 
 var Navbar = React.createClass({
 
@@ -14,27 +14,22 @@ var Navbar = React.createClass({
       return <li><a onClick={self.handleClick.bind(this, i)} >{ i }</a></li>
     });
     return (
-      <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-          </div>
-          <div className="collapse navbar-collapse navbar-ex1-collapse">
-            <ul className="nav navbar-nav">
-              { tabs }
-              <li><button className="btn btn-primary pull-right" type="button">
-                      cart <span Name="badge">{ basNum }</span>
-                  </button>
-              </li>
-            </ul>
-          </div>
+     <nav>
+        <div className="navbar-fixed">
+          <a href="#!" className="brand-logo">Wanets</a>
+          <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+          <ul className="right hide-on-med-and-down">
+            { tabs }
+            <li><a onClick={self.handleClick.bind(this, 'cart')}>cart <span className="items badge">{ basNum }</span></a></li>
+          </ul>
+          <ul className="side-nav" id="mobile-demo">
+            { tabs }
+            <li><a onClick={self.handleClick.bind(this, 'cart')}>cart <span className="items badge">{ basNum }</span></a></li>
+
+          </ul>
         </div>
       </nav>
+        
       )
   }
 });

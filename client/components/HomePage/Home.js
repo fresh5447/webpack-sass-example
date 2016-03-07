@@ -8,7 +8,6 @@ var Home = React.createClass({
     return (
       <div>
         <Jumbotron/>
-        <About/>
         <Products products={ this.props.products } addProduct={this.props.addProduct}/>
       </div>
       )

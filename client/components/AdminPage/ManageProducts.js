@@ -69,7 +69,7 @@ var Inventory = React.createClass({
 var ManageProducts = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="container">
         <Inventory products={this.props.products}/>
         <ProductForm />
       </div>

@@ -27,7 +27,7 @@ var Cart = React.createClass({
   },
   render: function() {
     var total = 0;
-    var cartDisplay = this.state.openOrder.length > 0 ? items : <div> Your Cart Is Empty </div>;
+    var cartDisplay = this.state.openOrder[0] > 0 ? items : <div> Your Cart Is Empty </div>;
     var items = this.state.openOrder.map(function(item){
       total += Number(item.price)
       return (

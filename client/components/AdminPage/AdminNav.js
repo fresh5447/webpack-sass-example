@@ -9,16 +9,16 @@ var AdminNav = React.createClass({
   render: function() {
     var self = this;
     var links = tabsArray.map(function(i){
-      return <li className="" onClick={self.handleClick.bind(this,i)} >{ i }</li>
+      return <a  onClick={self.handleClick.bind(this,i)} className="breadcrumb">{ i }</a>
     });
     return (
-        <div className="container">
-          <div className="row">
-          <ol className="breadcrumb my-crumb">
+        <nav className="container">
+          <div className="nav-wrapper">
+            <div className="col s12">
             { links }
-          </ol>
+            </div>
           </div>
-        </div>
+        </nav>
       )
   }
 });

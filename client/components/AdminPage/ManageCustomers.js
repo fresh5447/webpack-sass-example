@@ -12,13 +12,13 @@ var ManageCustomers = React.createClass({
         )
     });
     return (
-      <div>
-        <table className="table table-hover">
+      <div className="container">
+        <table className="">
           <thead> <h4> Customers </h4>
             <tr>
-              <th>username</th>
-              <th>email</th>
-              <th>recent order </th>
+              <th className="data-field">username</th>
+              <th className="data-field">email</th>
+              <th className="data-field">recent order </th>
             </tr>
           </thead>
           <tbody>

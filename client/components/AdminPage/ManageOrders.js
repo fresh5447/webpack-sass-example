@@ -23,7 +23,7 @@ var ManageOrders = React.createClass({
         )
     });
     return (
-      <div>
+      <div className="container">
       <h3> Orders </h3>
       { orders }
       </div>
