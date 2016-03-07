@@ -18,7 +18,7 @@ var App = React.createClass({
     return {
       showing: 'home',
       customers: [],
-      orders: [],
+      allOrders: [],
       products: [],
       basket: [],
       user: {_id: "56db8b20dbf0214e27499185", __v: 0, local: Object}
@@ -39,8 +39,7 @@ var App = React.createClass({
       url: '/api/orders',
       method: 'GET'
     }).done(function(data){
-      console.log('got orders', data)
-      self.setState({orders: data})
+      self.setState({allOrders: data})
     })
   },
   getCustomers: function() {
@@ -53,7 +52,6 @@ var App = React.createClass({
     })
   },
   loadProductsFromServer: function() {
-    console.log("trying to load products from server");
     var self = this;
     $.ajax({
       url: this.props.url,
@@ -89,7 +87,7 @@ var App = React.createClass({
           return <Shop/>
           break;
       case 'admin':
-          return <AdminPage orders={ this.state.orders } products={this.state.products} customers={this.state.customers}/>
+          return <AdminPage orders={ this.state.allOrders } products={this.state.products} customers={this.state.customers}/>
           break;
       case 'cart':
           return <Cart user={ this.state.user } items={this.state.basket} />

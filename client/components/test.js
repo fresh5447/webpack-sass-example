@@ -1,88 +1,16 @@
-var React = require('react');
+var axios = require('axios');
+var arrOfIds = ["56dba3d56bb89af736cfff42", "56dba3d56bb89af736cfff42", "56dba3d56bb89af736cfff42", "56dba3e16bb89af736cfff43", "56dba3ec6bb89af736cfff44"];
 
-var tabsArray = ['orders', 'customers', 'products'];
-
-var ManageOrders = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h3> hello from orders </h3>
-      </div>
-      )
-  }
+var myArr = arrOfIds.map(function(i){
+  return axios.get('/api/products/' + i);
 });
 
-var ManageCustomers = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h3> hello from customers </h3>
-      </div>
-      )
-  }
-});
+function doIt() {
+  axios.all(myArr)
+    .then(function (data) {
+      console.log(data);
+  });  
+}
 
-var ManageProducts = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h3> hello from products </h3>
-      </div>
-      )
-  }
-});
+doIt()
 
-
-var AdminNav = React.createClass({
-  render: function() {
-    var self = this;
-    var links = tabsArray.map(function(i){
-      return <li className="">{ i }</li>
-    });
-    return (
-        <div className="container">
-          <div className="row">
-          <ol className="breadcrumb">
-            { links }
-          </ol>
-          </div>
-        </div>
-      )
-  }
-});
-
-var AdminPage = React.createClass({
-  getInitialState: function() {
-    showing: 'orders'
-  },
-  showComponent: function() {
-    switch(this.state.showing) {
-      case 'orders':
-          return <Orders/>
-          break;
-      case 'customers':
-          return <Customers/>
-          break;
-      case 'products':
-          return <Products/>
-          break;
-    }
-  },
-  toggleComponents: function(toShow) {
-    this.setState({
-      showing: toShow
-    });
-  },
-  render: function() {
-    return (
-      <div>
-        <AdminNav toggleComponents={this.toggleComponents}/>
-        <ManageOrders/>
-        <ManageCustomers/>
-        <ManageProducts/>
-      </div>
-      )
-  }
-})
-
-module.exports = AdminPage;
