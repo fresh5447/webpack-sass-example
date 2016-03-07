@@ -26,19 +26,25 @@ var Cart = React.createClass({
     this.populateCart();
   },
   render: function() {
-    console.log(this.state.openOrder);
-    var fullCart = this.state.openOrder.map(function(item){
+    var total = 0;
+    var items = this.state.openOrder.map(function(item){
+      total += Number(item.price)
       return (
-        <div>
-          <h3> your cart </h3>
-          { item }
-        </div>
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <p> Name: { item.name } </p>
+              <p> Price: { item.price } </p>
+              <p> <img src={ item.img }/> </p>
+            </div>
+          </div>
         )
-    });
-    var cartDisplay = this.state.openOrder.length > 0 ? fullCart : "No Items In Cart";
+    })
     return (
       <div>
-        { cartDisplay }
+        <h3> Checkout your cart </h3>
+          { items }
+          TOTAL: <h3> { total } </h3>
+          <button type="button" className="btn btn-default">Check Out</button>
       </div>
       )
   }
