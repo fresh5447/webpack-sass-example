@@ -8,17 +8,17 @@ var Products = React.createClass({
     var self = this;
     var product = this.props.products.map(function(p){
       return (
-        <div className="col s12 m7">
+        <div className="col s12 m4">
           <div className="card">
             <div className="card-image">
-              <img src={p.img}/>
+              <img src={p.img} className=""/>
               <span className="card-title">{p.name}</span>
             </div>
             <div className="card-content">
               <p>This is a description of the card that heas yet to be created</p>
             </div>
             <div className="card-action">
-              <button onClick={self.handleProduct.bind(this, p._id)}>Add To Cart</button>
+              <button className="btn btn-primary btn-lg" onClick={self.handleProduct.bind(this, p._id)}>Add To Cart</button>
             </div>
           </div>
         </div>

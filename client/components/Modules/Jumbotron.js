@@ -6,13 +6,12 @@ var Jumbotron = React.createClass({
         <div className="container">
           <div className="row">
             <div className="col s6">
-              <h1>Hello, world!</h1>
-              <p> it would be nice if there was a big beautiful image behind here </p>
-              <p>Contents ...</p>
+              <h1>Janets Sauce</h1>
+              <p> Sauce so damn good, itll make you wanna slap yo mama </p>
             </div>
             <div className="col s6">
               <p>
-                <a className="btn btn-primary btn-lg">Learn more</a>
+                <img src="http://www.outside-oslo.com/wp-content/uploads/2013/07/Danish-Blue-Cheese-Salad-Horizontal.jpg"/>
               </p>
             </div>
           </div>

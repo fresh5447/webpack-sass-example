@@ -6,6 +6,19 @@
   text-align: center
 }
 
+.my-img {
+  width: 20% !important;
+}
+
+.j {
+  width: 75%;
+  height: auto;
+}
+
+ .parallax-container {
+      height: 150px;
+    }
+
 .polaroid {
     width: 80%;
     background-color: white;
