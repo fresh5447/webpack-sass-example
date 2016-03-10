@@ -11,6 +11,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 
+
+
 if (process.env.NODE_ENV === 'production') {
   console.log('Running in production mode');
 
@@ -20,8 +22,12 @@ if (process.env.NODE_ENV === 'production') {
 
   var chokidar = require('chokidar');
   var webpack = require('webpack');
-  var webpackConfig = require('./webpack.config.dev');
+  var webpackDevServer = require('webpack/hot/dev-server');
+  var webpackConfig = require('./webpack.config');
   var compiler = webpack(webpackConfig);
+  webpackConfig.entry.unshift("webpack-dev-server/client?http://localhost:8080/");
+  var server = new webpackDevServer(compiler, {});
+  server.listen(8080);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath

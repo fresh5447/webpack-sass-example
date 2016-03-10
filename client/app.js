@@ -1,5 +1,5 @@
 var React = require('react');
-var RD = require('react-dom');
+var ReactDOM = require('react-dom');
 var Navbar = require('./components/Modules/Navbar');
 var Home = require('./components/HomePage/Home');
 var Shop = require('./components/ShoppingCart/Shop');
@@ -8,7 +8,8 @@ var AdminPage = require('./components/AdminPage/AdminPage');
 var Footer = require('./components/Modules/Footer');
 var Signup = require('./components/UserStuff/Signup');
 var Signin = require('./components/UserStuff/Signin');
-require('./stylesheets/base.sass');
+
+require('./stylesheets/base.scss');
 
 var myArrOfState = [];
 var counter = 0;
@@ -110,10 +111,11 @@ var App = React.createClass({
       <div>
         <Navbar toggleComponents={this.toggleComponents} basNum={counter}/>
           {this.showComponent()}
+          <h3> Added a header </h3>
         <Footer/>
       </div>
       )
   }
 });
 
-RD.render(<App url="/api/products"/>, document.getElementById('app'));
+ReactDOM.render(<App url="/api/products"/>, document.getElementById('app'));

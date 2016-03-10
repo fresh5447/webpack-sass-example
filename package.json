@@ -4,6 +4,8 @@
   "description": "eCommerce Website",
   "main": "server.js",
   "scripts": {
+    "devServer": "webpack-dev-server --devtool eval --progress --colors --hot --content-base static",
+    "dev": "npm run devServer && node server.js",
     "clean": "rimraf static",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack && node server.js",
@@ -23,12 +25,15 @@
     "express-session": "^1.11.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "faker": "^3.0.1",
+    "materialize-css": "^0.97.5",
     "mongoose": "^4.4.6",
     "node-sass": "^3.4.2",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "postcss-loader": "^0.8.1",
-    "sass-loader": "^3.1.2"
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0"
   },
   "devDependencies": {
     "babel-core": "^5.4.7",
