@@ -10,6 +10,7 @@ var User = require('./models/user');
 var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
+var api = require('instagram-node').instagram();
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Running in production mode');
@@ -89,12 +90,52 @@ app.get('/api/user', function(req, res){
   } else {
   res.json({message: "no user"});    
   }
-})
+});
+
 
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/customers', customerRoutes);
 
-app.listen(port, function(req, res){
-  console.log("server running on port: " + port)
+
+
+api.use({
+  client_id: 'ca6419c1d20349a9b7424fe211471838',
+  client_secret: 'acd3d7f0ff2c4f6abfb5687e2b923bfa'
+});
+
+var redirect_uri = 'http://localhost3000.com/handleauth';
+
+authorize_user = function(req, res) {
+  res.redirect(api.get_authorization_url(redirect_uri, { scope: ['likes'], state: 'a state' }));
+};
+
+handleauth = function(req, res) {
+  api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+    if (err) {
+      console.log(err.body);
+      res.send("Didn't work");
+    } else {
+      console.log('Yay! Access token is ' + result.access_token);
+      res.send('You made it!!');
+    }
+  });
+};
+
+// This is where you would initially send users to authorize
+app.get('/authorize_user', authorize_user);
+// This is your redirect URI
+app.get('/handleauth', handleauth);
+
+app.get('/insta', function(req, res){
+  api.user('user_id', function(err, result, remaining, limit) {});
+})
+
+
+
+
+
+
+app.listen(port, function(){
+  console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 fired up 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 \n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 on " + port + " 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
 });

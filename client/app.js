@@ -8,7 +8,10 @@ var AdminPage = require('./components/AdminPage/AdminPage');
 var Footer = require('./components/Modules/Footer');
 var Signup = require('./components/UserStuff/Signup');
 var Signin = require('./components/UserStuff/Signin');
+var Map = require('./GoogleMap');
 require('./stylesheets/base.sass');
+
+var MaterialApp = require('./material-app');
 
 var myArrOfState = [];
 var counter = 0;
@@ -64,6 +67,7 @@ var App = React.createClass({
     this.loadProductsFromServer();
     this.getCustomers();
     this.getOrders();
+    this.getUser();
   },
   addProduct: function(b) {
     myArrOfState.push(b);
@@ -98,6 +102,12 @@ var App = React.createClass({
       case 'signin':
           return <Signin/>
           break;
+      case 'materialapp':
+          return <MaterialApp/>
+          break;
+      case 'map':
+          return <GoogleMap/>
+          break;
     }
   },
   toggleComponents: function(toShow) {
@@ -108,7 +118,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Navbar toggleComponents={this.toggleComponents} basNum={counter}/>
+        <Navbar user={ this.state.user } toggleComponents={this.toggleComponents} basNum={counter}/>
           {this.showComponent()}
         <Footer/>
       </div>

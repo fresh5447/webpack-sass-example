@@ -1,0 +1,11 @@
+CLIENT ID ca6419c1d20349a9b7424fe211471838
+CLIENT SECRET acd3d7f0ff2c4f6abfb5687e2b923bfa
+WEBSITE URL http://www.kosmojo.com/
+REDIRECT URI  http://localhost:3000/
+SUPPORT EMAIL doug@kosmojo.com
+
+
+
+https://api.instagram.com/oauth/authorize/?client_id=ca6419c1d20349a9b7424fe211471838&redirect_uri=http://localhost:3000/&response_type=code
+
+887ecfd45fcc48cdb0a98bb907398408

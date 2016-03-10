@@ -25,5 +25,16 @@
 <script>
   $(".button-collapse").sideNav();
   $('.parallax').parallax();
+  $(window).scroll(function() {
+
+    if ($(this).scrollTop()>0)
+     {
+        $('.navbar-fixed').fadeIn();
+     }
+    else
+     {
+      $('.navbar-fixed').fadeOut();
+     }
+ });
 </script>
 </html>
