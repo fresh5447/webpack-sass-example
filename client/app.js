@@ -106,7 +106,7 @@ var App = React.createClass({
           return <MaterialApp/>
           break;
       case 'map':
-          return <GoogleMap/>
+          return <Map/>
           break;
     }
   },
